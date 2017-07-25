@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Toja l'aventurier </title>
+</head>
+
+<body>
+<center>
+<div  >
+<div id="point" style=" border:1px solid green ; width:30%">TEMPS  :0  -  POINT:0 </div>
+<div id="statut" style="font-size:20px  ;" ></div>
+<canvas id="c" width="600" height="500" style="">
+<p>Désolé metteez votre navigateur à jour !<p>
+</canvas>
+
+</div>
+</center>
+
+<script>
+
+//declarations des variables 
+
+var points=document.getElementById("point"),point=0;
+// 0 pour naturel 1 pour debout et 2 pour assis  
+var etat=0 ;
+var temps=0  ;
+var numero=1  ;
+var niveau=0 ;
+var speedObstacle=10 ;
+var speed=10 ;
+
+var sapinx= new Array() ;
+
+var sapin= new Image() ;
+
+sapin.src="sapin.png"
+
+var players= new Array() ;
+var player ;
+
+var sol= new Image() ;
+
+var images= new Array() ;
+
+var image= new Image() ;
+
+image.src="O11.png" ;
+
+images.push(image) ;
+
+
+var choc= new Image() ;
+
+image.src="O12.png" ;
+
+images.push(image) ;
+
+
+var soly= [400,300,160] ,solx= [100,330,64]  ;
+
+soly.push(100);
+
+sol.src="sol1.png" ;
+
+var L=600,l=500 ;
+
+var x=100,y=90 ,ysaut ;
+
+var xsol=100,ysol=130 
+
+ var canvas= document.querySelector('#c') ;
+
+ var saut=-40,canJump=true  ;
+
+ var  context = canvas.getContext('2d') ;
+
+ var gameOver=false ; 
+ var divStatut= document.getElementById('statut') ;
+
+ 
+ for(var i=0;i<12;i++){
+player= new Image() ;
+player.src="j"+numero+".png" ;
+players.push(player) ;
+numero++ ;
+
+}
+
+
+//tableaux dimage 
+numero=1 ; 
+ 
+ //fin declaration 
+ //changerNiveau() ;
+ manimerPersonnage() ;
+
+ dessiner() ;
+ mettreSapin() ;
+
+ 
+ 
+ //
+ 
+ 
+ 
+ //gestion des evenements 
+document.addEventListener('keydown', function(e) {
+
+if(gameOver==false){
+
+if(e.keyCode==37&&x>32)
+
+{
+
+x-=5;
+}
+else if(e.keyCode==39&&x<500)
+{x+=5 ;
+
+
+}
+
+else if(e.keyCode==38)
+{
+
+
+if(canJump==true)
+{
+ysaut=y ;
+canJump=false  ;
+sauter() ;
+
+
+}
+}
+
+else if(e.keyCode==40)
+{
+//y+=20 ;
+ seBaisser() ;
+}
+
+
+
+
+
+dessiner() ;
+} 
+ 
+ }, true);
+
+
+
+ //actualisation 
+ 
+function actualiser()
+{
+
+if(gameOver==false){
+
+
+graviter() ;
+for( var i=0;i<soly.length;i++)
+{
+soly[i]-=10 ;
+
+}
+
+
+for( var i=0;i<sapinx.length;i++)
+{
+
+if(Math.abs(sapinx[i]-x)<10&&(ysol-32-y)>15)
+{
+point+=5 ;
+
+
+
+}
+
+
+else if(Math.abs(sapinx[i]-x)<20&&(ysol-32-y)<15)
+{
+
+
+
+
+}
+
+
+if(images[i]=="sapin.png")
+{
+sapinx[i]-=(speedObstacle*2) ;
+alert("ok") ;
+}
+else 
+sapinx[i]-=(speed) ;
+
+if(sapinx[i]<0)
+{
+sapinx.splice(i,1)  ;
+images.splice(i,1)  ;
+
+}
+
+temps+=1 ;
+points.innerHTML="TEMPS:  "+temps+"   -   POINTS : "+point ;
+
+}
+
+dessiner() ;
+graviter()  ;
+setTimeout(actualiser, 100); 
+
+}
+}
+
+
+actualiser() ;
+
+
+function dessiner()
+{
+
+
+context.fillStyle='rgb(255,255,255)';
+
+ context.fillRect(0,0,L,l) ;
+
+ context.fillStyle='gold';
+context.drawImage(players[numero],x,y) ;
+
+for( var i=0;i<soly.length;i++)
+{
+context.drawImage(sol,solx[i],soly[i]) ;
+
+}
+
+for( var i=0;i<sapinx.length;i++)
+{
+
+context.drawImage(images[i],sapinx[i],ysol-32) ;
+
+}
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+function mettreSapin(){
+/*
+sapinx.push(800) ;
+
+var n=(sapinx.length%3)+1;
+
+image= new Image() ;
+image.src="O"+niveau+n+".png" ;
+images.push(image) ;
+
+
+
+*/
+soly.push(450);
+solx.push(Math.ceil(800*((Math.random())+0.01)));
+for( var i=0;i<solx.length;i++){
+
+
+if(soly[i]<0){
+soly.splice(i,1)  ;
+solx.splice(i,1)  ;
+
+}
+
+
+}
+     if(gameOver==false){
+   setTimeout(mettreSapin,Math.ceil(1000*((Math.random())+0.01)));
+  }
+
+
+}
+
+
+
+ 
+function mettreAjourSpeed()
+{
+
+speed+=1;
+ setTimeout(mettreAjourSpeed,5000);
+
+}
+
+//chaner paysage 
+
+
+
+ 
+function changerNiveau()
+{
+
+niveau+=1;
+ setTimeout(changerNiveau,40000);
+ sol.src="sol"+niveau+".png"
+ 
+
+}
+//FIN  MOUVEMENT DE LA SCENE 
+
+
+
+
+
+
+
+//FIN PETITE ANIMATION 
+
+
+
+ function manimerPersonnage(){
+ 
+ 
+//si on deborde et il n 'est pas entain de sauter 
+if(numero==8&&etat==0){
+
+numero=1;
+
+}
+
+
+
+else if(etat==0){
+
+
+numero++ ; 
+
+}
+   setTimeout(manimerPersonnage,90);
+ 
+}
+
+//FIN PETITE ANIMATION
+
+// MOUVEMENTS 
+
+
+function sauter()
+{
+
+
+saut+=5;
+y+=saut  ;
+if(canJump)
+return ;
+if(y>=ysaut)
+{
+y=ysaut ;
+canJump=true ;
+saut=-40 ;
+dessiner() ;
+numero=1 ;
+etat=0 ;
+}
+
+else
+{
+dessiner() ;
+etat=1 ;
+numero=10 ;
+setTimeout(sauter,100); 
+
+}
+
+}
+ 
+ 
+
+  function seBaisser()
+  {
+  
+  
+  if(etat==0){
+  
+etat=2;
+numero=9 ;
+
+setTimeout(seBaisser,1000); 
+//on le ra
+
+}
+
+else if(etat==2){
+
+etat=0;
+numero=1 ;
+}  
+
+  }
+  
+  
+  
+  function graviter(){
+  var c=true ; 
+  
+  for( var i=soly.length;i>=0;i--){
+
+if(Math.abs(solx[i]-x)<38&&soly[i]-y>20&&soly[i]-y<50)
+{
+
+
+y=soly[i]-54 ;
+
+c=false  ;
+canJump=true ;
+etat=0 ;
+
+numero=numero%9;
+return ;
+
+
+}
+
+
+
+
+
+}
+ if(c)
+{
+
+y+=5 ;
+etat=1 ;
+
+numero=10 ;
+
+}
+
+  
+  }
+  
+ 
+ 
+ 
+// FIN MOUVEMENT 
+
+
+
+
+
+//mettreSapin() ;
+//mettreAjourSpeed() ;
+ 
+ 
+</script>
+</body>
+</html>
