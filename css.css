@@ -1,0 +1,222 @@
+nav{
+
+background-color:rgba(14,96,126,0.1);
+
+}
+@font-face {
+font-family: 'GOTHIC';
+src: url('GOTHIC.ttf');
+}
+@font-face {
+font-family: 'Kingthings Conundrum';
+src: url('Kingthings Conundrum.ttf');
+}
+h1
+{
+color:rgba(220,48,67,1);
+font-family:GOTHIC;
+margin-bottom:0px;
+}
+.titre{
+	font-family:GOTHIC;
+	font-size:100%;
+	text-shadow: 1px 1px 2px black;
+	margin-left: 15px;
+	top: 300px;
+}
+.liste
+{
+font-family: GOTHIC;
+font-size:15px;
+
+}
+#texte{
+	font-family: Century Gothic;
+	font-size:16px;
+	
+}
+#b .col-sm-6
+{
+	height:50%;
+}
+
+#num{
+
+background-color:rgba(220,48,67,1);
+color:yellow;
+border-radius:20px ;
+margin-top:1% ;
+margin-left:4% ;
+margin-right:2% ;
+padding:4px ;
+font-size:12px ;
+}
+
+
+header{
+background-color:rgba(0,0,0,0.0);
+
+margin-bottom:0% ;
+}
+
+
+
+
+#university{
+border-left:  1px solid rgb(220,48,67);
+
+width:45% ;
+border-radius:10px 10px 30px 30px ;
+
+
+}
+#university2{
+border-right:  1px solid rgb(220,48,67);
+
+width:45% ;
+border-radius:0px 10px 30px 30px ;
+
+
+}
+
+#logo{
+
+width:15%;
+margin-left:-99px;
+
+border:none ;
+}
+#description
+{
+
+font-size:14px ;
+}
+
+#steps{
+/*background-color:rgba(146,199,216,0.2);*/
+border-radius:15px;
+}
+
+#anim{
+
+ transition-property: top;
+ transition-duration: 3s;
+
+}
+#haut
+{
+	margin-top:30px;
+}
+
+#b{
+/*box-shadow: 1px 1px 4px rgba(0,0,0, 0.521);*/
+	
+background-color:rgba(184,177,183,0.1);
+border-radius:30px 30px 30px 30px ;
+
+}
+#font{
+	background: url("images_cuas/entete2.jpg") fixed top center;
+	width: 100%;
+     padding-bottom:5px ;
+	box-shadow: 1px 1px 4px black;
+	}
+#barre{
+background-color:rgba(250,250,250,0.5);
+width:100% ;
+margin-left:0px ;
+height:28px ;
+position:fixed ;
+left:0px ;
+top:0px ;
+z-index:10 ;
+}
+
+li a{
+
+color:black ; 
+}
+#test{
+width:100%;
+
+}
+
+
+
+
+
+#menu{
+position:absolute ;
+top:-50px;
+
+
+}
+
+
+
+#m{
+position:relative ;
+top:-15px;
+
+}
+#corps{
+position:relative ;
+top:0px;
+padding:30px;
+background-color:rgba(255,255,255,1);
+box-shadow: 3px 1px 4px #black;
+}
+#couleur
+{
+	background-color:rgba(0,0,0,0.7);
+	/*background: url("fond5.png");*/
+
+}
+body{
+	/*background:url(cou.jpg);*/
+	background-color:rgba(216, 146, 166, 0.021);
+}
+footer{
+	background-color:rgba(0,0,0,0.5);
+	
+}
+#form{
+	/*background-color:rgba(150,160,160,0.5);*/
+	border-radius: 0px 0px 0px 0px;
+	/*box-shadow: 1px 1px 4px #cecece;*/
+	border-left: 1px solid #cecece;
+	height:300px;
+}
+#bouton{
+	margin-right:35px;
+	
+}
+#red{
+	color:rgba(240,4,27,0.8);
+}
+#slide{
+	/*height:350px;*/
+	
+}
+span a
+{
+	color: rgba(0,0,0,0.7);
+}
+span a:hover
+{
+	color: rgba(250,0,0,0.7);
+	text-decoration: none;
+}
+
+#con{
+	font-size: 1.2em;
+}
+#admin
+{
+	background-color:rgba(0,0,0,0.9);
+}
+#citylist
+{
+	background-color: rgba(184,177,183,0.2);
+	border-radius: 10px 10px 0px 0px;
+}
